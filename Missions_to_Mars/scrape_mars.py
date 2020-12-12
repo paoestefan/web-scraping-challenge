@@ -55,54 +55,38 @@ def scrape():
 
 
 # In[6]:
-
-
 # A blank list to hold the headlines
     news_titles = []
-# Loop over div elements
+    # Loop over div elements
     for result in results:
-    # Identify the anchor...
-     if (result.a):
-        # And the anchor has non-blank text...
-            if (result.a.text):
-            # Append thext to the list
-                news_titles.append(result)
-                news_titles
-
-
-# In[7]:
+        # Identify the anchor...
+            if (result.a):
+            # And the anchor has non-blank text...
+                if (result.a.text):
+                # Append thext to the list
+                    news_titles.append(result)
+    
     finalnewstitles = []
-# Print only the headlines
+    # Print only the headlines
     for x in range(6):
         var=news_titles[x].text
         newvar = var.strip('\n\n')
         finalnewstitles.append(newvar)
-        finalnewstitles
-    
 
-# In[8]:
-
-
-#Find classification for description paragraph below title
+    #Find classification for description paragraph below title
     presults = soup.find_all('div', class_="rollover_description_inner")
-    presults
-
-
-# In[9]:
-
 
     news_p = []
-# Loop through the div results to pull out just the text
-
+    # Loop through the div results to pull out just the text
     for x in range(6):
         var=presults[x].text
         newvar = var.strip('\n\n')
         news_p.append(newvar)
-        news_p
-
+    
     #add titles and paragraphs to dictionary
     mars_data['news_titles'] = finalnewstitles
     mars_data['news_p'] = news_p
+
 
 # ## JPL Mars Space Images - Featured Image
 
